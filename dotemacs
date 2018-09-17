@@ -1,0 +1,121 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; FILE:  .emacs
+;;; USER:  Derek Yohn
+;;;
+;;; This is my .emacs. There are many like it, but this one is mine.
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; CUSTOM HOOKS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my-c++-mode-hook ()
+  (setq c-basic-offset 4)
+  (c-set-offset 'substatement-open 0))
+
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+
+(add-hook 'text-mode-hook 'auto-fill-mode)
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; CUSTOM KEY BINDINGS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; setup a shortcut for agenda mode
+;;(global-set-key "\C-xa" 'org-agenda)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+ 
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; GLOBAL OPTIONS ENABLED
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; turn on syntax highlighting
+(global-font-lock-mode 1)
+
+;; turn on visual automatic line wrapping
+(global-visual-line-mode t)
+
+;; enforce "thou shalt not have more than 80 columns on a line"
+(setq-default fill-column 80)
+
+
+;; pretty sure this is unnecessary since it is part of my c++ mode hook,
+;; but I will keep it here for now in case it needs to be put back in
+;; keep brackets at the same indentation level as the statements they open
+;;(c-set-offset 'substatement-open '0)
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; CUSTOM SET VARIABLES
+;;;
+;;; These are usually automatically included by using emacs customization menus
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(c-default-style
+   (quote
+    ((c-mode . "stroustrup")
+     (c++-mode . "stroustrup")
+     (java-mode . "java")
+     (awk-mode . "awk")
+     (other . "gnu"))))
+ '(custom-enabled-themes nil)
+ '(global-visual-line-mode t)
+ '(org-agenda-files (quote ("~/repos/sweden/notes/project.org")))
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
+ '(package-selected-packages (quote (auctex))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; ORG-MODE PARTICULARS
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;; Org-mode configuration
+;;   Enable org-mode
+(require 'org)
+;; Make Org mode work with files ending in .org
+;; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
+;; The above is the default in recent emacsen
+
+(setq org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+
+(setq org-log-done t)
