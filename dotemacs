@@ -26,9 +26,9 @@
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
-(add-hook 'text-mode-hook 'auto-fill-mode)
+;; (add-hook 'text-mode-hook 'auto-fill-mode)
 
-
+(add-hook 'text-mode-hook '(lambda() (turn-on-auto-fill) (set-fill-column 80)))
 
 
 
